@@ -10,7 +10,9 @@ import { db } from './data/db'
 function App() {
 
   const [data, setData] = useState(db)
-  
+  const [cart, setCart] = useState([])  
+
+
   // useEffect(() => {
   //   setData(db)
   // }, [])
@@ -28,6 +30,8 @@ function App() {
             <Guitar
               key={guitar.image}
               guitar={guitar}
+              // cart={cart}
+              setCart={setCart}
             />
           ))}
           
