@@ -1,11 +1,19 @@
+import { useState, useEffect }from 'react'
 import Guitar from './components/Guitar'
 import Header from './components/Header'
+import { db } from './data/db'
 
 
 
 
 
 function App() {
+
+  const [data, setData] = useState(data)
+  
+  // useEffect(() => {
+  //   setData(db)
+  // }, [])
 
   return (
     <>
@@ -17,6 +25,11 @@ function App() {
 
         <div className="row mt-5">
           
+          <Guitar />
+          <Guitar />
+          <Guitar />
+          <Guitar />
+          <Guitar />
           <Guitar />
           
         </div>
