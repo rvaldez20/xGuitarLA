@@ -9,7 +9,8 @@ import { db } from './data/db'
 
 function App() {
 
-  const [data, setData] = useState(data)
+  const [data, setData] = useState(db)
+  console.log(db)
   
   // useEffect(() => {
   //   setData(db)
@@ -25,12 +26,9 @@ function App() {
 
         <div className="row mt-5">
           
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
-          <Guitar />
+          {data.map((guitar) => (
+            <Guitar />
+          ))}
           
         </div>
       </main>
