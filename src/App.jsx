@@ -28,6 +28,15 @@ function App() {
     }
   }
 
+  function removeFromCart(id) {
+    console.log('eliminando item', id)
+    setCart( prevCart => prevCart.filter(guitar => guitar.id !== id))
+
+    // otra forma de hacerlo
+    // const updateCart = cart.filter( guitar => id !== guitar.id )
+    // setCart(updateCart)
+  }
+
 
   // useEffect(() => {
   //   setData(db)
@@ -38,6 +47,7 @@ function App() {
 
       <Header 
         cart={cart}
+        removeFromCart={removeFromCart}
       />
 
       <main className="container-xl mt-5">
