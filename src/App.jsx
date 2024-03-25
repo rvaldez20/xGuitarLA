@@ -17,12 +17,14 @@ function App() {
     const itemExists = cart.findIndex(guitar => guitar.id === item.id)
     
     if(itemExists >= 0) {
-      // item ya existe en el carrito
-      console.log('Ya existe')
+      // ya xiste se incrementa la cantidad
+      const updateCart = [...cart]
+      updateCart[itemExists].quantity++
+      setCart(updateCart)
     } else{
-      console.log('No existe')
+      // no existe y se agrega
       item.quantity = 1
-      setCart([cart, item])
+      setCart([...cart, item])
     }
 
     
