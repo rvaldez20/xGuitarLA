@@ -10,7 +10,23 @@ import { db } from './data/db'
 function App() {
 
   const [data, setData] = useState(db)
-  const [cart, setCart] = useState([])  
+  const [cart, setCart] = useState([])
+
+  function addToCart(item) {
+    // verificamo si el item no se ha agregado al carrito
+    const itemExists = cart.findIndex(guitar => guitar.id === item.id)
+    
+    if(itemExists >= 0) {
+      // item ya existe en el carrito
+      console.log('Ya existe')
+    } else{
+      console.log('No existe')
+      item.quantity = 1
+      setCart([cart, item])
+    }
+
+    
+  }
 
 
   // useEffect(() => {
@@ -32,6 +48,7 @@ function App() {
               guitar={guitar}
               // cart={cart}
               setCart={setCart}
+              addToCart={addToCart}
             />
           ))}
           
