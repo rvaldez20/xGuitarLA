@@ -11,6 +11,8 @@ function App() {
 
   const [data, setData] = useState(db)
   const [cart, setCart] = useState([])
+  
+  const MAX_ITEMS = 5 
 
   function addToCart(item) {
     // verificamo si el item no se ha agregado al carrito
@@ -37,10 +39,26 @@ function App() {
     // setCart(updateCart)
   }
 
+  function increaseQuantity(id) {
+    const updateCart = cart.map( item => {
+      if(item.id === id && item.quantity < MAX_ITEMS ) {
+        return {
+          ...item,
+          quantity: item.quantity + 1
+        }
+      }
+      return item
+    })
+    setCart(updateCart)
 
-  // useEffect(() => {
-  //   setData(db)
-  // }, [])
+
+
+    // const idItem = cart.findIndex(guitar => guitar.id === id)
+    // const updateCart = [...cart]
+    // updateCart[idItem].quantity++
+    // setCart(updateCart)
+  }
+
 
   return (
     <>
@@ -48,6 +66,7 @@ function App() {
       <Header 
         cart={cart}
         removeFromCart={removeFromCart}
+        increaseQuantity={increaseQuantity}
       />
 
       <main className="container-xl mt-5">
