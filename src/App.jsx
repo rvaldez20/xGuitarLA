@@ -4,6 +4,7 @@ import { useCart } from './hooks/useCart'
 
 function App() {
 
+  //! Custom Hook useCart
   const {  
     data,
     cart,
@@ -12,6 +13,8 @@ function App() {
     decreaseQuantity,
     increaseQuantity,
     clearCart,
+    isEmpty,
+    cartTotal,
   } = useCart()
 
   return (
@@ -22,6 +25,8 @@ function App() {
         decreaseQuantity={decreaseQuantity}
         increaseQuantity={increaseQuantity}
         clearCart={clearCart}
+        isEmpty={isEmpty}
+        cartTotal={cartTotal}
       />
 
       <main className="container-xl mt-5">
@@ -39,13 +44,11 @@ function App() {
         </div>
       </main>
 
-
       <footer className="bg-dark mt-5 py-5">
         <div className="container-xl">
             <p className="text-white text-center fs-4 mt-4 m-md-0">GuitarLA - Todos los derechos Reservados</p>
         </div>
       </footer>
-
     </>
   )
 }

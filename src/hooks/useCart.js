@@ -1,4 +1,4 @@
-import { useState, useEffect }from 'react'
+import { useState, useEffect, useMemo }from 'react'
 import { db } from '../data/db'
 
 export const useCart = () => {
@@ -33,13 +33,9 @@ export const useCart = () => {
          item.quantity = 1
          setCart([...cart, item])
       }
-
-      //!se actualiza el cart en el localstorage
-      saveLocalStorage()
    }
 
    function removeFromCart(id) {
-      console.log('eliminando item', id)
       setCart( prevCart => prevCart.filter(guitar => guitar.id !== id))
    }
 
@@ -73,6 +69,10 @@ export const useCart = () => {
       setCart([])
    }
 
+   //! States derivado ()
+   const isEmpty = useMemo(() => cart.length === 0, [cart])
+   const cartTotal = useMemo (() => cart.reduce((total, item) => total + (item.price * item.quantity), 0), [cart])
+
    return {
       data,
       cart,
@@ -81,6 +81,8 @@ export const useCart = () => {
       decreaseQuantity,
       increaseQuantity,
       clearCart,
+      isEmpty,
+      cartTotal,
    }
 }
 
