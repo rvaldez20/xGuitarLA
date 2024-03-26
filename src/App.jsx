@@ -4,17 +4,22 @@ import Header from './components/Header'
 import { db } from './data/db'
 
 
-
-
-
 function App() {
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cartGuitar')
+    return localStorageCart ? JSON.parse(localStorageCart) : []
+  }
 
   const [data, setData] = useState(db)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(initialCart)
   
   const MIN_ITEMS = 1
   const MAX_ITEMS = 5 
 
+  useEffect(() => {
+    localStorage.setItem('cartGuitar', JSON.stringify(cart))
+  }, [cart])
+  
   function addToCart(item) {
     // verificamo si el item no se ha agregado al carrito
     const itemExists = cart.findIndex(guitar => guitar.id === item.id)
@@ -30,6 +35,9 @@ function App() {
       item.quantity = 1
       setCart([...cart, item])
     }
+
+    //!se actualiza el cart en el localstorage
+    saveLocalStorage()
   }
 
   function removeFromCart(id) {
@@ -77,10 +85,8 @@ function App() {
     setCart([])
   }
 
-
   return (
     <>
-
       <Header 
         cart={cart}
         removeFromCart={removeFromCart}
